@@ -1,0 +1,32 @@
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Map }  from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
+
+@Component({
+  selector: 'map-mini-map',
+  templateUrl: './mini-map.component.html',
+  styleUrl: './mini-map.component.css'
+})
+export class MiniMapComponent implements AfterViewInit {
+
+
+  @ViewChild('map') divMap?: ElementRef;
+  @Input() lngLat?: [number, number];
+
+  ngAfterViewInit(): void {
+
+    if ( !this.divMap?.nativeElement) throw "Map div not found"
+    if ( !this.lngLat ) throw "lngLat can't be null";
+
+    const map = new Map({
+      accessToken: 'pk.eyJ1IjoibWFyY29zbWRiIiwiYSI6ImNsdmJuOHBtZzA0aXoybG9hejJnN3g1azIifQ.7APxH99ChgluvdEA6TW7SQ',
+      container: this.divMap?.nativeElement, // container ID
+      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      center: this.lngLat, // starting position [lng, lat]
+      zoom: 14, // starting zoom
+      interactive: false
+    });
+  }
+
+
+
+}
