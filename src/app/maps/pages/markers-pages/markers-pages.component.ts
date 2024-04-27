@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { LngLat, Map, Marker }  from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
-import * as mapboxgl from 'mapbox-gl';
+import { environment } from '../../../../environments/environments';
 
 
 // En una APP real, las interfaces deberian estar en archivos independientes
@@ -34,7 +34,7 @@ export class MarkersPagesComponent {
     if ( !this.divMap ) throw 'Elemento no enocntrado'
 
     this.map = new Map({
-      accessToken: 'pk.eyJ1IjoibWFyY29zbWRiIiwiYSI6ImNsdmJuOHBtZzA0aXoybG9hejJnN3g1azIifQ.7APxH99ChgluvdEA6TW7SQ',
+      accessToken: environment.mapbox_key,
       container: this.divMap.nativeElement, // container ID
       style: 'mapbox://styles/mapbox/streets-v12', // style URL
       center: this.currentLngLat, // starting position [lng, lat]

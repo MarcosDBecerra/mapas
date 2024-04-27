@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { LngLat, Map, MapLayerEventType }  from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
+import { environment } from '../../../../environments/environments';
 
 @Component({
   templateUrl: './zoom-range.component.html',
@@ -18,7 +19,7 @@ export class ZoomRangeComponent implements AfterViewInit {
     if ( !this.divMap ) throw 'Elemento no enocntrado'
 
     this.map = new Map({
-      accessToken: 'pk.eyJ1IjoibWFyY29zbWRiIiwiYSI6ImNsdmJuOHBtZzA0aXoybG9hejJnN3g1azIifQ.7APxH99ChgluvdEA6TW7SQ',
+      accessToken: environment.mapbox_key,
       container: this.divMap.nativeElement, // container ID
       style: 'mapbox://styles/mapbox/streets-v12', // style URL
       center: this.currentLngLat, // starting position [lng, lat]
